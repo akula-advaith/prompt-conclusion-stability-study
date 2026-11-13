@@ -1,0 +1,13 @@
+# Recorded main-run environment (Google Colab, 10 Nov 2026):
+# Python 3.13.16
+# PyTorch 2.14.1+cu130 (CUDA-enabled Colab build; install a CUDA-compatible wheel)
+# Transformers 5.22.1
+#
+# The notebook was executed in Colab. A local environment may need a matching
+# CUDA/PyTorch installation; do not blindly install a CPU-only PyTorch wheel.
+transformers==5.22.1
+accelerate
+huggingface_hub
+pandas
+scikit-learn
+matplotlib
