@@ -168,7 +168,7 @@
 
 \bibitem[Schulhoff et~al\mbox{.}(2024)]%
         {schulhoff2024}
-\bibfield{author}{\bibinfo{person}{Stefan Schulhoff}, \bibinfo{person}{Matthew
+\bibfield{author}{\bibinfo{person}{Sander Schulhoff}, \bibinfo{person}{Matthew
   Ilie}, {et~al\mbox{.}}} \bibinfo{year}{2024}\natexlab{}.
 \newblock \bibinfo{title}{The Prompt Report: A Systematic Survey of Prompting
   Techniques}.
