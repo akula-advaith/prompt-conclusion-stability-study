@@ -99,3 +99,11 @@ For the class demonstration and handoff, the same v1.4 materials are also groupe
 - `05_Research_Documentation/` — G1 research brief, frozen Phase II plan, Phase III baseline validation report, research decisions and AI-assistance log.
 
 The JSON files are the primary archived evidence. The CSVs are convenient tabular exports. Keep the raw JSON files unchanged. AI-assisted annotations and pairwise labels remain first-pass assessments and require human review before final submission.
+
+
+## Research papers
+
+- **First paper — literature review:** `papers/literature_review/source/` contains the LaTeX source and bibliography.
+- **Second paper — controlled study:** `papers/second_paper/second_research_paper.pdf` is the compiled paper; the matching `.tex`, `.bib`, figures, and build instructions are stored alongside it.
+
+The second-paper PDF is built automatically by `.github/workflows/build-second-paper.yml` when relevant source files change. It remains an exploratory draft until the AI-assisted annotations, citations, and final claims have been independently checked by the student author.

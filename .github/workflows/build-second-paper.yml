@@ -1,0 +1,58 @@
+name: Build second research paper PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-second-paper.yml"
+      - "scripts/build_second_paper.py"
+      - "papers/second_paper/second_research_paper.tex"
+      - "papers/second_paper/second_paper_references.bib"
+      - "papers/second_paper/figures/quality_by_prompt_model.png"
+      - "papers/second_paper/figures/pairwise_relation_counts.png"
+      - "results/analysis/relation_similarity_summary.csv"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install LaTeX and plotting dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-publishers texlive-bibtex-extra texlive-fonts-recommended
+          python -m pip install --upgrade pip
+          python -m pip install matplotlib
+
+      - name: Rebuild the TF-IDF figure from the checked-in analysis CSV
+        run: python scripts/build_second_paper.py
+
+      - name: Compile the manuscript
+        working-directory: papers/second_paper
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error second_research_paper.tex
+          test -s second_research_paper.pdf
+          pdfinfo second_research_paper.pdf | grep -E "Pages:|Page size:"
+
+      - name: Commit compiled paper and generated figure
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add papers/second_paper/second_research_paper.pdf papers/second_paper/figures/tfidf_by_conclusion_relation.png
+          if git diff --cached --quiet; then
+            echo "Paper PDF and figure are already up to date."
+          else
+            git commit -m "Build compiled second research paper PDF"
+            git push
+          fi
