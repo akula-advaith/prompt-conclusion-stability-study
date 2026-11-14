@@ -1,0 +1,51 @@
+<PARSED TEXT FOR SHEET: 1 / 1 TABS
+TAB NAME: pairwise_conclusion_relations.csv>
+index,source_id,model_size,prompt_a,prompt_b,relation,ai_assisted_pairwise_rationale,quality_score_difference,tfidf_cosine_similarity,prompt_pair
+0,S01,0.5B,P0_reference,P1_paraphrase,emphasis_shift,"Both discuss mixed climate responses and management difficulty, but emphasize different interpretations; P0's income framing is unsupported.",0.0,0.3242635346155692,P0 vs P1
+1,S01,0.5B,P0_reference,P2_paraphrase,substantive_shift,"P2 focuses on identifying drivers of variation, whereas P0 reframes the issue around income-group stakeholders and adaptation difficulty.",0.3333,0.1861789524107829,P0 vs P2
+2,S01,0.5B,P1_paraphrase,P2_paraphrase,substantive_shift,P1 emphasizes management challenges; P2 emphasizes understanding drivers as the key conclusion.,0.3333,0.1877500874259068,P1 vs P2
+3,S01,1.5B,P0_reference,P1_paraphrase,emphasis_shift,P0 lists several putative drivers; P1 emphasizes mixed outcomes and spatial/temporal variation.,0.1666999999999999,0.272234520445795,P0 vs P1
+4,S01,1.5B,P0_reference,P2_paraphrase,emphasis_shift,"Both focus on drivers of mixed responses, but select different details and levels of specificity.",0.1666999999999999,0.3422480423781095,P0 vs P2
+5,S01,1.5B,P1_paraphrase,P2_paraphrase,stable,Both express that mixed EGS responses are common and primarily associated with spatial/temporal differences.,0.0,0.4175347459910038,P1 vs P2
+6,S02,0.5B,P0_reference,P1_paraphrase,substantive_shift,"P0 introduces extinction risk and mammals/reptiles, while P1 reports species-richness declines mainly affecting birds/plants.",0.8333,0.2122305453817444,P0 vs P1
+7,S02,0.5B,P0_reference,P2_paraphrase,substantive_shift,P0 changes the affected species and outcome to extinction risk; P2 follows the abstract's bird/plant richness projection.,0.6667,0.2712922889753458,P0 vs P2
+8,S02,0.5B,P1_paraphrase,P2_paraphrase,stable,Both state projected bird/plant species-richness declines at 2°C and call for conservation.,0.1666,0.7466546754721045,P1 vs P2
+9,S02,1.5B,P0_reference,P1_paraphrase,emphasis_shift,Both report biodiversity declines and refugia constraints; P0 additionally emphasizes the lower-risk well-below-2°C scenario.,0.1666999999999999,0.6218828275142682,P0 vs P1
+10,S02,1.5B,P0_reference,P2_paraphrase,stable,"Both retain the biodiversity decline, refugia constraints and lower-risk well-below-2°C scenario.",0.1666999999999999,0.3786388992863503,P0 vs P2
+11,S02,1.5B,P1_paraphrase,P2_paraphrase,emphasis_shift,"P2 adds the 2°C reference, insufficient protection and Paris Agreement qualification; P1 is more compressed.",0.0,0.3067264032658697,P1 vs P2
+12,S03,0.5B,P0_reference,P1_paraphrase,substantive_shift,P0 adds unsupported claims about Maharashtra and Gujarat; P1 stays within the abstract's three-state scope.,0.5,0.4676845209682319,P0 vs P1
+13,S03,0.5B,P0_reference,P2_paraphrase,substantive_shift,P0 introduces non-existent comparator states and smaller gains; P2 reports the supported lower-baseline comparison.,0.5,0.8139195107536449,P0 vs P2
+14,S03,0.5B,P1_paraphrase,P2_paraphrase,stable,Both report improved teacher effort and learning in lower-baseline states without changing the central conclusion.,0.0,0.57055364821839,P1 vs P2
+15,S03,1.5B,P0_reference,P1_paraphrase,stable,"All three outputs report that providing information improves teacher effort and learning, with stronger gains in lower-baseline states.",0.0,0.9392028801806102,P0 vs P1
+16,S03,1.5B,P0_reference,P2_paraphrase,stable,The outputs express the same campaign-effect conclusion; wording and detail differ slightly.,0.0,0.3245535932876394,P0 vs P2
+17,S03,1.5B,P1_paraphrase,P2_paraphrase,stable,Both retain the same central conclusion about improved teacher effort and learning.,0.0,0.3455628172959048,P1 vs P2
+18,S04,0.5B,P0_reference,P1_paraphrase,stable,"The outputs are effectively equivalent, both reporting a small significant achievement gain with peer assessment.",0.0,0.8996305684331312,P0 vs P1
+19,S04,0.5B,P0_reference,P2_paraphrase,stable,Both retain the small achievement-gain conclusion; P2 adds a feedback interpretation.,0.0,0.2387386267536349,P0 vs P2
+20,S04,0.5B,P1_paraphrase,P2_paraphrase,stable,The outputs differ in wording and explanatory detail but retain the same substantive conclusion.,0.0,0.2387386267536349,P1 vs P2
+21,S04,1.5B,P0_reference,P1_paraphrase,stable,Both report a small statistically significant achievement improvement from peer assessment.,0.0,0.6757799902128735,P0 vs P1
+22,S04,1.5B,P0_reference,P2_paraphrase,stable,Both express the same achievement-gain conclusion; P2 adds class/platform context.,0.0,0.4649130453003435,P0 vs P2
+23,S04,1.5B,P1_paraphrase,P2_paraphrase,stable,The outputs retain the same substantive conclusion with only contextual wording differences.,0.0,0.3696303147090031,P1 vs P2
+24,S05,0.5B,P0_reference,P1_paraphrase,emphasis_shift,P0 highlights home/school evidence but misstates the occasion as after meals; P1 gives the broader program conclusion.,0.1666,0.7160883776320781,P0 vs P1
+25,S05,0.5B,P0_reference,P2_paraphrase,emphasis_shift,"Both convey program effectiveness; P0 emphasizes settings and has an occasion error, while P2 summarizes the overall effect.",0.1666,0.7879132385583806,P0 vs P2
+26,S05,0.5B,P1_paraphrase,P2_paraphrase,stable,Both express the teacher-led intervention's potential to improve handwashing behavior at scale.,0.0,0.4522414446403116,P1 vs P2
+27,S05,1.5B,P0_reference,P1_paraphrase,emphasis_shift,"Both report increased handwashing, but P0 specifies the occasions inaccurately while P1 states the broader program effect.",0.1666,0.3262996056149935,P0 vs P1
+28,S05,1.5B,P0_reference,P2_paraphrase,emphasis_shift,Both retain the intervention effect; P0's incorrect before/after-meals detail differs from P2's before-meal emphasis.,0.1666,0.2995984940513687,P0 vs P2
+29,S05,1.5B,P1_paraphrase,P2_paraphrase,stable,Both report increased handwashing among schoolchildren through teacher-led programs.,0.0,0.4050319887609939,P1 vs P2
+30,S06,0.5B,P0_reference,P1_paraphrase,substantive_shift,"P0 characterizes the effects as inconclusive overall, whereas P1 reports statistical superiority on several outcomes.",0.3333,0.3697913422695023,P0 vs P1
+31,S06,0.5B,P0_reference,P2_paraphrase,substantive_shift,P0 broadly suggests inconclusive outcomes; P2 claims improvement in several health outcomes.,0.0,0.289192610479614,P0 vs P2
+32,S06,0.5B,P1_paraphrase,P2_paraphrase,emphasis_shift,"Both report benefits, but P1 is general while P2 names outcomes and broadens to other health behaviors.",0.3333,0.4482571653929987,P1 vs P2
+33,S06,1.5B,P0_reference,P1_paraphrase,stable,Both report improvements in selected outcomes and limited/no effects elsewhere; P0 lists the null outcomes more fully.,0.0,0.6871904775203435,P0 vs P1
+34,S06,1.5B,P0_reference,P2_paraphrase,stable,Both distinguish beneficial outcomes from limited effects on other outcomes.,0.0,0.6774386603141777,P0 vs P2
+35,S06,1.5B,P1_paraphrase,P2_paraphrase,emphasis_shift,P2 expands the list of outcome areas with minimal effects while P1 is more concise.,0.0,0.6380158849263107,P1 vs P2
+36,S07,0.5B,P0_reference,P1_paraphrase,stable,The outputs are identical and make the same broad improvement claim.,0.0,1.0,P0 vs P1
+37,S07,0.5B,P0_reference,P2_paraphrase,stable,Both make the same general claim that DP-AGL improves defect-prediction accuracy; P2 adds architecture detail.,0.0,0.3359618668228626,P0 vs P2
+38,S07,0.5B,P1_paraphrase,P2_paraphrase,stable,"Both retain the same central improvement claim, with P2 adding implementation detail.",0.0,0.3359618668228626,P1 vs P2
+39,S07,1.5B,P0_reference,P1_paraphrase,stable,Both report improved statement-level defect prediction using attention and recurrent architecture.,0.0,0.2745849846676343,P0 vs P1
+40,S07,1.5B,P0_reference,P2_paraphrase,stable,Both express improved statement-level defect prediction; P2 adds a broader performance claim.,0.3333,0.2450179714503114,P0 vs P2
+41,S07,1.5B,P1_paraphrase,P2_paraphrase,stable,The architecture and statement-level prediction conclusion are consistent across the outputs.,0.3333,0.3423602053751293,P1 vs P2
+42,S08,0.5B,P0_reference,P1_paraphrase,stable,Both focus on a three-type leakage taxonomy and the effect of contaminated features.,0.0,0.6559580075535213,P0 vs P1
+43,S08,0.5B,P0_reference,P2_paraphrase,emphasis_shift,P0 emphasizes mitigation and legitimate static features; P2 emphasizes previously reported high accuracy and contamination.,0.3333,0.1303641079129152,P0 vs P2
+44,S08,0.5B,P1_paraphrase,P2_paraphrase,emphasis_shift,"Both identify leakage, but P2 focuses on the 95–99% literature claim while P1 emphasizes mitigation.",0.3333,0.2156026121635936,P1 vs P2
+45,S08,1.5B,P0_reference,P1_paraphrase,emphasis_shift,"Both describe the taxonomy and effect of removing leakage, but P0 adds a generalization claim while P1 emphasizes platform dependence.",0.3333,0.3633243363093459,P0 vs P1
+46,S08,1.5B,P0_reference,P2_paraphrase,emphasis_shift,P0 emphasizes taxonomy and generalization; P2 highlights the magnitude of the accuracy reduction.,0.3333,0.2986667350663379,P0 vs P2
+47,S08,1.5B,P1_paraphrase,P2_paraphrase,stable,Both report that removing leaky features reduces accuracy and emphasize the importance of identifying temporal leakage.,0.0,0.5424696210507174,P1 vs P2

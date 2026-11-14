@@ -1,0 +1,7 @@
+model_size,prompt_id,n,mean_total_quality,mean_conclusion_fidelity,mean_evidential_support,mean_scope_fidelity,one_sentence_pass_rate
+0.5B,P0_reference,8,0.458,0.562,0.375,0.438,0.875
+0.5B,P1_paraphrase,8,0.687,0.812,0.75,0.5,1.0
+0.5B,P2_paraphrase,8,0.708,0.875,0.75,0.5,1.0
+1.5B,P0_reference,8,0.729,0.875,0.75,0.562,0.875
+1.5B,P1_paraphrase,8,0.792,1.0,0.875,0.5,1.0
+1.5B,P2_paraphrase,8,0.75,0.938,0.812,0.5,0.875
