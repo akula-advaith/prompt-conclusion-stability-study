@@ -8,9 +8,7 @@ on:
       - "scripts/build_second_paper.py"
       - "papers/second_paper/second_research_paper.tex"
       - "papers/second_paper/second_paper_references.bib"
-      - "papers/second_paper/figures/quality_by_prompt_model.png"
-      - "papers/second_paper/figures/pairwise_relation_counts.png"
-      - "results/analysis/relation_similarity_summary_v1_4.csv"
+      - "papers/second_paper/figure_data_v1_4.json"
   workflow_dispatch:
 
 permissions:
@@ -35,7 +33,7 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install matplotlib
 
-      - name: Rebuild the TF-IDF figure from the checked-in analysis CSV
+      - name: Regenerate the three paper figures
         run: python scripts/build_second_paper.py
 
       - name: Compile the manuscript
@@ -45,14 +43,14 @@ jobs:
           test -s second_research_paper.pdf
           pdfinfo second_research_paper.pdf | grep -E "Pages:|Page size:"
 
-      - name: Commit compiled paper and generated figure
+      - name: Commit compiled paper and regenerated figures
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add papers/second_paper/second_research_paper.pdf papers/second_paper/figures/tfidf_by_conclusion_relation.png
+          git add papers/second_paper/second_research_paper.pdf papers/second_paper/figures/*.png
           if git diff --cached --quiet; then
-            echo "Paper PDF and figure are already up to date."
+            echo "Paper PDF and figures are already up to date."
           else
-            git commit -m "Build compiled second research paper PDF"
+            git commit -m "Build compiled second research paper and figures"
             git push
           fi

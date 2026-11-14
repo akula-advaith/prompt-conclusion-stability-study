@@ -1,0 +1,17 @@
+{
+  "version": "v1.4",
+  "provenance": "Descriptive aggregates transcribed from the verified v1.4 result tables and manuscript. These values are AI-assisted first-pass assessments, not independent human ground truth.",
+  "quality_by_model_and_prompt": {
+    "0.5B": {"P0_reference": 0.458, "P1_paraphrase": 0.687, "P2_paraphrase": 0.708},
+    "1.5B": {"P0_reference": 0.729, "P1_paraphrase": 0.792, "P2_paraphrase": 0.750}
+  },
+  "pairwise_relations_by_model": {
+    "0.5B": {"stable": 10, "emphasis_shift": 6, "substantive_shift": 8, "contradiction": 0},
+    "1.5B": {"stable": 15, "emphasis_shift": 9, "substantive_shift": 0, "contradiction": 0}
+  },
+  "tfidf_by_relation": {
+    "stable": {"n": 25, "mean": 0.503},
+    "emphasis_shift": {"n": 15, "mean": 0.406},
+    "substantive_shift": {"n": 8, "mean": 0.350}
+  }
+}
