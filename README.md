@@ -88,3 +88,14 @@ See `docs/project_status.md`. The main run is complete; the analysis and manuscr
 ## Citation and AI assistance
 
 Publisher links, DOI values and license notes are included with the frozen dataset. Preserve the source attribution requirements when reusing abstracts. AI tools assisted with planning, coding, debugging, first-pass annotation, descriptive analysis, manuscript preparation and documentation. See `docs/ai_assistance_and_debugging_log_v1_4.md`. The student author remains responsible for verification, code understanding and final claims.
+
+
+## Numbered submission folders
+
+For the class demonstration and handoff, the same v1.4 materials are also grouped in these numbered folders:
+
+- `03_Code_and_Notebooks/` — baseline and main Colab notebooks, validator, summary-rebuild script, README and requirements.
+- `04_Dataset_and_Results/` — frozen sources, the recorded 48-output raw run, AI-assisted annotations, pairwise labels, summary CSVs, analysis report and three vector result graphs.
+- `05_Research_Documentation/` — G1 research brief, frozen Phase II plan, Phase III baseline validation report, research decisions and AI-assistance log.
+
+The JSON files are the primary archived evidence. The CSVs are convenient tabular exports. Keep the raw JSON files unchanged. AI-assisted annotations and pairwise labels remain first-pass assessments and require human review before final submission.
