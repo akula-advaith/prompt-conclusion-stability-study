@@ -1,5 +1,7 @@
 # Phase II — Experiment Plan v1.4
 
+> **Historical status note (14 November 2026):** This is the frozen pre-collection protocol snapshot. Its original status statements and unchecked pre-collection checklist record the position before the main run. The main v1.4 experiment was subsequently executed on 10 November 2026; see D16 in `docs/research_decisions_v1_4.md` and `results/raw/main_experiment_raw_outputs_v1_4.json`. The protocol itself has not been retroactively altered.
+
 **Project:** Prompt Sensitivity and Stability of LLM-Generated Scientific Conclusions  
 **Status:** Protocol frozen for the planned main data collection; the main experiment has **not** been run.  
 **Pathway:** B — Controlled comparative study.

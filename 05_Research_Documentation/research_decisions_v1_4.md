@@ -1,4 +1,6 @@
-# Research Decisions Log — Phase II/III v1.3
+# Research Decisions Log — Phase II/III v1.4 (earlier v1.3 decisions retained)
+
+> **Historical status note (14 November 2026):** This is a chronological decision log. D08–D15 preserve earlier development and pre-collection decisions; statements that the main run was still pending describe those earlier dates. D16 records the completed 10 November 2026 main run and supersedes the earlier pending-status statements. D17 records that human review of AI-assisted labels remains open.
 
 ## D08 — Narrow output to one central conclusion sentence
 

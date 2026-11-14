@@ -1,5 +1,7 @@
 # Phase III — Baseline Validation Report v1.4
 
+> **Historical status note (14 November 2026):** This report records the development-only baseline checkpoint, not the later main experiment. Its statements that the 48-output main run had not yet occurred were accurate for this checkpoint. The v1.4 main run was completed on 10 November 2026 and is recorded separately in `results/raw/main_experiment_raw_outputs_v1_4.json`.
+
 **Status: Operational baseline validation passed with a documented source-fidelity limitation.**  
 **Scope:** Phase III Prompts 08–11; development-only checks. The main experiment has not been run.
 
