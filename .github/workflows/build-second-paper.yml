@@ -8,6 +8,7 @@ on:
       - "scripts/build_second_paper.py"
       - "papers/second_paper/second_research_paper.tex"
       - "papers/second_paper/second_paper_references.bib"
+      - "papers/second_paper/second_research_paper.bbl"
       - "papers/second_paper/figure_data_v1_4.json"
   workflow_dispatch:
 
@@ -36,11 +37,18 @@ jobs:
       - name: Regenerate the three paper figures
         run: python scripts/build_second_paper.py
 
-      - name: Compile the manuscript
+      - name: Compile the manuscript with the verified bibliography
         working-directory: papers/second_paper
         run: |
-          latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error second_research_paper.tex
+          test -s second_research_paper.bbl
+          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error second_research_paper.tex
+          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error second_research_paper.tex
+          pdflatex -interaction=nonstopmode -halt-on-error -file-line-error second_research_paper.tex
           test -s second_research_paper.pdf
+          if grep -E "Citation .* undefined|There were undefined citations|Reference .* undefined|There were undefined references" second_research_paper.log; then
+            echo "Unresolved citations or references remain in the final LaTeX pass."
+            exit 1
+          fi
           pdfinfo second_research_paper.pdf | grep -E "Pages:|Page size:"
 
       - name: Commit compiled paper and regenerated figures
