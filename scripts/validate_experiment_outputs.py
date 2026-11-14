@@ -29,7 +29,7 @@ def main() -> int:
     if not args.outputs.is_file(): errors.append(f"Raw output JSON not found: {args.outputs}")
     if errors:
         print("VALIDATION FAILED")
-        print("\\n".join(f"- {e}" for e in errors))
+        print("\n".join(f"- {e}" for e in errors))
         return 1
 
     actual_hash = sha256(args.data)
@@ -75,10 +75,10 @@ def main() -> int:
     print(f"Empty outputs: {len(empty)}")
     print(f"Missing model revisions: {len(missing_revision)}")
     if errors:
-        print("\\nVALIDATION FAILED")
+        print("\nVALIDATION FAILED")
         for e in errors: print(f"- {e}")
         return 1
-    print("\\nVALIDATION PASSED: file integrity and expected experiment coverage checks passed.")
+    print("\nVALIDATION PASSED: file integrity and expected experiment coverage checks passed.")
     print("Note: this script validates file/schema coverage; it does not judge scientific correctness of model outputs.")
     return 0
 

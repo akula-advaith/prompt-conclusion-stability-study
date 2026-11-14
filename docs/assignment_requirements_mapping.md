@@ -2,14 +2,14 @@
 
 | Assignment requirement | Project evidence | Status / note |
 |---|---|---|
-| Connect the second study to the completed literature review | Literature-review package and G1 research brief | Prepared; citations and gap wording need human verification. |
-| Formulate testable research questions | Frozen experiment protocol and second-paper manuscript | Prepared. |
-| Select data and comparators | Eight publisher-checked abstracts and two Qwen2.5 model sizes | Prepared. |
-| Freeze a fair protocol | P0/P1/P2 conditions, pinned model revisions and fixed generation settings | v1.4 protocol. |
-| AI-assisted coding and baseline validation | Phase III baseline notebook and historical baseline report | Development validation; report predates main run. |
-| Actual experimental execution | Main experiment notebook and raw result JSON/CSV | 48 outputs retained. |
-| Metrics, comparisons and deeper analysis | Analysis CSVs, report and figures | AI-assisted first-pass analysis; annotations need human review. |
-| Second research paper | LaTeX manuscript, bibliography, PDF draft and figures | Draft prepared; technical review and citation audit remain. |
-| Reproducibility and repository | README, data, notebooks, scripts, outputs and protocol | Prepared; rerun validation and review uploaded assets. |
-| AI use/accountability | Consolidated provenance and debugging log | Working log; authentic prompt transcript/code-change record may still be required. |
+| Connect the second study to the completed literature review | `papers/literature_review/` and `docs/G1_research_brief.pdf` | Prepared; citations and gap should be human-verified. |
+| Formulate testable research questions | `docs/phase_ii_experiment_plan_v1_4.md` and second-paper manuscript | Prepared. |
+| Select data and comparators | `data/` and experiment plan | Eight publisher-checked abstracts; two Qwen2.5 model sizes. |
+| Freeze a fair protocol | `docs/phase_ii_experiment_plan_v1_4.md` and frozen notebook | v1.4 protocol. |
+| AI-assisted coding and baseline validation | `notebooks/01_phase_iii_baseline_validation.ipynb`, historical baseline report, provenance log | Development validation; see historical status note. |
+| Actual experimental execution | `notebooks/02_main_experiment_v1_4.ipynb`, `results/raw/` | 48 main-run outputs retained. |
+| Metrics, comparisons and deeper analysis | `results/analysis/` | First-pass analysis prepared; annotations need human review. |
+| Second research paper | `papers/second_paper/` | Draft prepared; technical review and citation audit remain. |
+| Reproducibility and repository | README, data, notebooks, scripts, results, configuration details | Package prepared; run validation script. |
+| AI use/accountability | `docs/ai_assistance_and_debugging_log_v1_4.md` | Working log; authentic prompt transcript and code-change record may need adding. |
 | Five-minute demonstration | Not yet included | Prepare separately. |
