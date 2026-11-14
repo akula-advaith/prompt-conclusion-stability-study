@@ -2,39 +2,42 @@
 
 ## Overall decision
 
-**Not yet final-submission ready.** The project has substantial evidence for G1–G3 and the core G4 paper/repository artifacts exist. The remaining issues are material: human review of AI-assisted labels, independent source/citation checks, complete first-paper packaging, provenance completion, and the five-minute demonstration.
+**The project is substantially assembled, but it is not yet final-submission ready.** The core research path, two papers, notebooks, 48-output run, analysis files and GitHub repository are present. The remaining work is mainly human validation, provenance, a clean reproduction check and the required demonstration.
 
 ## Gate review
 
-| Gate | Assignment threshold | Current audit |
+| Gate | Instructor's requirement | Current position |
 |---|---|---|
-| G1 — Research brief | One-page gap brief, original supporting papers, focused question, pathway, compute/data feasibility | **Prepared / provisional.** Brief and plan exist. Recheck that primary sources support the gap framing and preserve “novelty not established.” |
-| G2 — Baseline verification | Accessible dataset, environment check, runnable baseline, measured output, validation report | **Evidence present with limitation.** Actual baseline notebook, JSON run, comparator smoke tests and validation report are now stored. The development conclusion omitted a material qualification; it is documented, not hidden. |
-| G3 — Experimental evidence | Frozen protocol, actual outputs/logs, tables/plots, deeper analysis | **Substantially complete; human validation pending.** 48 raw outputs, analysis CSVs, plots and failure cases are present. All labels/scores are AI-assisted first-pass assessments and need human review. |
-| G4 — Paper and reproducibility | Paper PDF + LaTeX, GitHub repository, AI audit, 5-minute demo | **Partially complete.** Second paper source/PDF/BibTeX/figures and repository are present. AI audit is partial, first-paper PDF/figure package needs validation, human review/citation verification is open, and demo is pending. |
+| G1 — Research brief | One-page gap brief, original supporting papers, focused question, pathway, data/compute feasibility | **Prepared.** The G1 brief and frozen plan are present. Keep novelty qualified; independently verify the source claims before submission. |
+| G2 — Baseline verification | Accessible data, environment test, runnable baseline, measured output, validation report | **Substantial evidence with a limitation.** The development baseline and GPU environment were run and checked. The development output omitted the source's call for larger, fully powered trials; this is recorded as a fidelity failure. |
+| G3 — Experimental evidence | Frozen protocol, genuine outputs/logs, tables/plots and one deeper analysis | **Main run complete; assessment review pending.** 48 raw generations, analysis files, three result plots, pairwise comparison and qualitative failure cases are present. The 48 output scores and 48 pairwise labels are AI-assisted first-pass assessments. |
+| G4 — Paper and reproducibility | Final PDF + LaTeX + bibliography + figures, GitHub, AI audit and five-minute demonstration | **Partially complete.** Both papers and their source/bibliography files are in GitHub. Provenance is partial, clean-environment reproduction is not yet demonstrated, human review is open, and the five-minute demo is pending. |
 
-## Critical blockers before submission
+## Confirmed deliverables
 
-1. **Human annotation review:** review all 48 output assessments and all 48 pairwise labels against the eight source abstracts. Record corrections in separate versioned files; never edit raw model outputs.
-2. **Citation/source audit:** verify all second-paper and first-paper references at publisher/official records and check each citation supports the nearby claim. Check dataset-specific reuse/license conditions.
-3. **First paper packaging:** add/verify the compiled first literature-review PDF and its referenced prompt_refinement.jpeg source figure in GitHub; run its LaTeX build.
-4. **Provenance:** retain the authentic Phase III debug log and outputs; add the actual prompt/version-to-code-commit/diff mapping if available. Do not reconstruct or invent missing logs.
-5. **Demonstration:** prepare and rehearse a five-minute walkthrough: research question and link to review; baseline and main notebook; dataset hash/config; actual raw outputs; two result plots and one failure case; limitations/AI provenance. Be prepared to rerun one validator or summary script.
+1. **First paper:** literature-review PDF, LaTeX source, BibTeX bibliography and embedded TikZ diagram are in `papers/literature_review/`. Its latest GitHub Actions compile completed successfully.
+2. **Second paper:** PDF, LaTeX source, `.bib`, verified `.bbl`, three figures and human-review checklist are in `papers/second_paper/`.
+3. **Experiment:** 8 abstracts × 3 prompt conditions × 2 pinned Qwen2.5 models = 48 raw generations. The exact prompts, source text, model revisions, seed, decoding settings and runtime are in the raw JSON.
+4. **Analysis:** 48 AI-assisted output assessments and 48 AI-assisted pairwise labels. Counts are 25 stable, 15 emphasis shifts, 8 substantive shifts and 0 contradictions. These are not independent human judgments.
+5. **Repository:** original project structure plus numbered handoff folders `03_Code_and_Notebooks`, `04_Dataset_and_Results` and `05_Research_Documentation`.
 
-## Repository checks to complete
+## Remaining work before submission
 
-- Run the README commands from a clean environment and mark anything not tested as [TEST REQUIRED].
-- Confirm dataset access, attribution and licence handling from publisher records.
-- Confirm dependency compatibility and clarify that CUDA/PyTorch must match the actual environment.
-- Confirm first-paper PDF/figure, second-paper PDF/source/.bib/three figures and all experiment raw files are in the final branch.
-- Make historical pre-main-run Phase II/III status documents clearly labelled as historical; retain the frozen v1.4 plan as a pre-collection protocol snapshot.
+1. **Human annotation review:** read all 48 generated conclusions beside their source abstracts. Then review all 48 prompt-pair labels. Record corrections in a separate, versioned human-review file; never edit the raw model outputs.
+2. **Source and citation audit:** verify every paper reference at its primary publisher or official record and check that it supports the nearby claim. The eight PLOS source records used in the experiment have had their title/DOI metadata checked against publisher pages, but that is not a full claim-to-citation audit for both papers. Recheck reuse and attribution terms before redistribution.
+3. **AI provenance:** keep the authentic development/debugging log and add the actual prompt/version-to-code-commit/diff mapping if available. Do not reconstruct or invent missing records.
+4. **Clean reproduction check:** clone the repository into a fresh environment, follow the README commands, run the validator and summary-rebuild script, and record any dependency or GPU setup steps that need adjustment. The current notebooks have been checked as files; that is not the same as a second-student reproduction.
+5. **Five-minute demonstration:** prepare and rehearse a walkthrough covering the review-to-gap link, research question, baseline validation, main notebook, frozen dataset/hash, 48 outputs, two result plots, one source-fidelity failure, limitations and AI provenance. Be ready to rerun one validator or analysis command.
 
-## Claims that are currently defensible
+## Repository automation note
 
-- The main run produced 48 generations under the recorded 8 × 3 × 2 design with pinned model revisions and greedy settings.
+The latest first-paper workflow completed successfully. The latest second-paper workflow successfully regenerated the figures and compiled the manuscript, but its final push was rejected because the first- and second-paper workflows attempted to publish at the same time. This was a repository automation race, not a LaTeX compile failure. Both workflows now share a concurrency group and rebase generated commits onto the latest `main` before pushing. The already committed second-paper PDF remains present in `papers/second_paper/`.
+
+## Defensible claims
+
+- The main run produced 48 generations under the recorded 8 × 3 × 2 design, with pinned model revisions and greedy decoding.
 - The first-pass AI-assisted labels report 25 stable, 15 emphasis-shift, 8 substantive-shift and 0 contradiction pairs.
-- The paper's quality and prompt-pair findings are descriptive, not statistically significant or generalizable.
-- The two model conditions are from one Qwen2.5 family; this is not cross-family evidence.
-- The adapted PSS-style measure is study-specific and is not a full ProSA benchmark replication.
-
-Do not claim independent human validation, cross-family generalization, statistical significance, or a completed five-minute demonstration.
+- Findings are descriptive; the design does not establish statistical significance.
+- Both models are from the Qwen2.5 family; the data do not support cross-family generalization or a general model-size claim.
+- The adapted PSS-style value is study-specific and is not a full ProSA benchmark replication.
+- Human-independent validation of the annotations and completion of the five-minute demonstration must not be claimed until performed.
