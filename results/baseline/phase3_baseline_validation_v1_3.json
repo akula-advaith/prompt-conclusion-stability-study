@@ -1,0 +1,75 @@
+{
+  "stage": "Phase III v1.3 baseline validation; development only; excluded from main dataset",
+  "run_time_utc": "2026-10-29T19:00:46.533659+00:00",
+  "runtime": {
+    "timestamp_utc": "2026-10-29T18:57:51.538704+00:00",
+    "python_version": "3.13.16",
+    "pytorch_version": "2.11.0+cu130",
+    "transformers_version": "5.20.2",
+    "accelerate_version": "1.15.0",
+    "huggingface_hub_version": "1.33.0",
+    "cuda_available": true,
+    "gpu_name": "Tesla T4",
+    "python_executable": "/usr/bin/python3"
+  },
+  "dataset_validation": {
+    "dataset_version": "v1.1",
+    "sha256": "8c2bc1018ee04dc216c55c389ba296c1ad8138566063b1add827ed06d8393295",
+    "expected_sha256_match": true,
+    "source_count": 8,
+    "source_ids": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08"
+    ],
+    "all_required_fields_present": true,
+    "unique_ids": true,
+    "unique_abstracts": true
+  },
+  "prompt_assembly_validation": {
+    "passed": true,
+    "prompt_ids": [
+      "P0_reference",
+      "P1_paraphrase",
+      "P2_paraphrase"
+    ],
+    "source_preserved": true,
+    "common_constraints_identical": true
+  },
+  "main_dataset_sha256": "8c2bc1018ee04dc216c55c389ba296c1ad8138566063b1add827ed06d8393295",
+  "source": {
+    "id": "DEV_STEM_2023",
+    "title": "An AI-based intervention for improving undergraduate STEM learning",
+    "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0288844",
+    "doi": "10.1371/journal.pone.0288844",
+    "license": "CC BY; cite authors and source",
+    "abstract": "We present results from a small-scale randomized controlled trial that evaluates the impact of just-in-time interventions on the academic outcomes of N = 65 undergraduate students in a STEM course. Intervention messaging content was based on machine learning forecasting models of data collected from 537 students in the same course over the preceding 3 years. Trial results show that the intervention produced a statistically significant increase in the proportion of students that achieved a passing grade. The outcomes point to the potential and promise of just-in-time interventions for STEM learning and the need for larger fully-powered randomized controlled trials."
+  },
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_revision_sha": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "prompt_id": "P0_reference",
+  "exact_prompt": "State the central conclusion of the scientific abstract below in exactly one sentence. Use only information explicitly supported by the abstract. Do not add external knowledge, invent quantities, or extend the source's scope. Preserve important qualifications. Return exactly one sentence giving the central conclusion; do not include key-findings bullets or any additional commentary.\n\nABSTRACT:\nWe present results from a small-scale randomized controlled trial that evaluates the impact of just-in-time interventions on the academic outcomes of N = 65 undergraduate students in a STEM course. Intervention messaging content was based on machine learning forecasting models of data collected from 537 students in the same course over the preceding 3 years. Trial results show that the intervention produced a statistically significant increase in the proportion of students that achieved a passing grade. The outcomes point to the potential and promise of just-in-time interventions for STEM learning and the need for larger fully-powered randomized controlled trials.",
+  "raw_output": "The central conclusion of this scientific abstract is that just-in-time interventions have shown a statistically significant increase in the proportion of students achieving a passing grade in an undergraduate STEM course, indicating their potential and promise as a tool for enhancing STEM learning.",
+  "input_tokens": 211,
+  "output_tokens": 48,
+  "max_new_tokens": 100,
+  "possible_truncation": false,
+  "one_sentence_format_heuristic_pass": true,
+  "format_check_is_heuristic": true,
+  "do_sample": false,
+  "seed": 42,
+  "generation_seconds": 3.211,
+  "metric_unit_tests": {
+    "passed": true,
+    "adapted_pairwise_score_known_value": 0.26666666666666666,
+    "equal_scores_case": 0.0,
+    "endpoint_case": 1.0,
+    "tfidf_identical_text_similarity": 1.0000000000000007,
+    "tfidf_unrelated_text_similarity": 0.09397797902549186
+  }
+}

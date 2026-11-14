@@ -1,0 +1,36 @@
+{
+  "stage": "Phase III baseline validation; development only; excluded from main dataset",
+  "run_time_utc": "2026-10-28T12:20:31.608025+00:00",
+  "runtime": {
+    "timestamp_utc": "2026-10-28T12:17:10.652882+00:00",
+    "python_version": "3.13.16",
+    "pytorch_version": "2.11.0+cu130",
+    "transformers_version": "5.20.2",
+    "accelerate_version": "1.15.0",
+    "huggingface_hub_version": "1.33.0",
+    "cuda_available": true,
+    "gpu_name": "Tesla T4",
+    "python_executable": "/usr/bin/python3"
+  },
+  "main_dataset_sha256": "8c2bc1018ee04dc216c55c389ba296c1ad8138566063b1add827ed06d8393295",
+  "source": {
+    "id": "DEV_STEM_2023",
+    "title": "An AI-based intervention for improving undergraduate STEM learning",
+    "url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0288844",
+    "doi": "10.1371/journal.pone.0288844",
+    "license": "CC BY; cite authors and source",
+    "abstract": "We present results from a small-scale randomized controlled trial that evaluates the impact of just-in-time interventions on the academic outcomes of N = 65 undergraduate students in a STEM course. Intervention messaging content was based on machine learning forecasting models of data collected from 537 students in the same course over the preceding 3 years. Trial results show that the intervention produced a statistically significant increase in the proportion of students that achieved a passing grade. The outcomes point to the potential and promise of just-in-time interventions for STEM learning and the need for larger fully-powered randomized controlled trials."
+  },
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_revision_sha": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "prompt_id": "P0_reference",
+  "exact_prompt": "Summarize the scientific abstract provided below. Use only information explicitly supported by the abstract. Do not add external knowledge, infer unstated facts, or invent quantities. Preserve the study's scope and qualifications.\n\nReturn exactly these fields:\nCentral conclusion: exactly one sentence stating the paper's main conclusion.\nKey findings: exactly two bullet points reporting important findings from the abstract.\n\nABSTRACT:\nWe present results from a small-scale randomized controlled trial that evaluates the impact of just-in-time interventions on the academic outcomes of N = 65 undergraduate students in a STEM course. Intervention messaging content was based on machine learning forecasting models of data collected from 537 students in the same course over the preceding 3 years. Trial results show that the intervention produced a statistically significant increase in the proportion of students that achieved a passing grade. The outcomes point to the potential and promise of just-in-time interventions for STEM learning and the need for larger fully-powered randomized controlled trials.",
+  "raw_output": "**Central Conclusion:** Just-in-time interventions significantly increased the proportion of students achieving a passing grade in an undergraduate STEM course, demonstrating their potential as a tool for enhancing STEM learning outcomes.",
+  "input_tokens": 220,
+  "output_tokens": 37,
+  "max_new_tokens": 180,
+  "possible_truncation": false,
+  "do_sample": false,
+  "seed": 42,
+  "generation_seconds": 4.596
+}

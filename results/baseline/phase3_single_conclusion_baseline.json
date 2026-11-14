@@ -1,0 +1,35 @@
+{
+  "stage": "Phase III simplified single-conclusion baseline test",
+  "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0288844",
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "transformers_version": "5.20.2",
+  "pytorch_version": "2.11.0+cu130",
+  "gpu": "Tesla T4",
+  "do_sample": false,
+  "max_new_tokens": 100,
+  "run_time_utc": "2026-10-28T12:26:57.153451+00:00",
+  "records": [
+    {
+      "prompt_id": "P0_reference",
+      "exact_prompt": "Using only information explicitly supported by the abstract below, state the central research conclusion in exactly one sentence. Preserve the study's scope and qualifications. Do not add external knowledge or invent quantities.\n\nABSTRACT:\nWe present results from a small-scale randomized controlled trial that evaluates the impact of just-in-time interventions on the academic outcomes of N = 65 undergraduate students in a STEM course. Intervention messaging content was based on machine learning forecasting models of data collected from 537 students in the same course over the preceding 3 years. Trial results show that the intervention produced a statistically significant increase in the proportion of students that achieved a passing grade. The outcomes point to the potential and promise of just-in-time interventions for STEM learning and the need for larger fully-powered randomized controlled trials.",
+      "raw_output": "The just-in-time intervention significantly increased the proportion of students achieving a passing grade in an undergraduate STEM course, suggesting its potential as a promising approach for enhancing STEM learning outcomes.",
+      "output_tokens": 35,
+      "possible_truncation": false
+    },
+    {
+      "prompt_id": "P1_paraphrase",
+      "exact_prompt": "Rely solely on the following abstract and express the paper's main conclusion in one sentence. Keep the conclusion faithful to the evidence and preserve the study's scope and qualifications. Do not introduce outside facts or made-up quantities.\n\nABSTRACT:\nWe present results from a small-scale randomized controlled trial that evaluates the impact of just-in-time interventions on the academic outcomes of N = 65 undergraduate students in a STEM course. Intervention messaging content was based on machine learning forecasting models of data collected from 537 students in the same course over the preceding 3 years. Trial results show that the intervention produced a statistically significant increase in the proportion of students that achieved a passing grade. The outcomes point to the potential and promise of just-in-time interventions for STEM learning and the need for larger fully-powered randomized controlled trials.",
+      "raw_output": "The just-in-time intervention significantly improved the academic performance of undergraduate students in a STEM course, demonstrating its potential as an effective tool for enhancing STEM learning outcomes.",
+      "output_tokens": 32,
+      "possible_truncation": false
+    },
+    {
+      "prompt_id": "P2_paraphrase",
+      "exact_prompt": "Treat the abstract below as your only source. Write one sentence capturing its central conclusion without extending the findings beyond what the evidence supports. Retain any important qualifications and do not invent quantities or use external information.\n\nABSTRACT:\nWe present results from a small-scale randomized controlled trial that evaluates the impact of just-in-time interventions on the academic outcomes of N = 65 undergraduate students in a STEM course. Intervention messaging content was based on machine learning forecasting models of data collected from 537 students in the same course over the preceding 3 years. Trial results show that the intervention produced a statistically significant increase in the proportion of students that achieved a passing grade. The outcomes point to the potential and promise of just-in-time interventions for STEM learning and the need for larger fully-powered randomized controlled trials.",
+      "raw_output": "The study found that just-in-time interventions significantly improved the academic performance of undergraduate students in a STEM course, demonstrating the feasibility and effectiveness of these interventions in enhancing STEM learning outcomes.",
+      "output_tokens": 36,
+      "possible_truncation": false
+    }
+  ]
+}

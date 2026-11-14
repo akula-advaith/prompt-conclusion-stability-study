@@ -1,0 +1,18 @@
+{
+  "stage": "Phase III corrected baseline format test",
+  "source_url": "https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0288844",
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "model_revision": "7ae557604adf67be50417f59c2c2f167def9a775",
+  "transformers_version": "5.20.2",
+  "pytorch_version": "2.11.0+cu130",
+  "gpu": "Tesla T4",
+  "seed": 42,
+  "do_sample": false,
+  "raw_output": "```json\n{\n  \"central_conclusion\": \"Just-in-time interventions significantly improved the academic performance of undergraduate students in a STEM course.\",\n  \"key_findings\": [\n    \"First source-supported finding.\",\n    \"Second source-supported finding.\"\n  ]\n}\n```",
+  "parsed_output": null,
+  "schema_validation_pass": false,
+  "json_parse_error": "Expecting value: line 1 column 1 (char 0)",
+  "output_tokens": 54,
+  "possible_truncation": false,
+  "run_time_utc": "2026-10-28T12:24:08.790827+00:00"
+}
