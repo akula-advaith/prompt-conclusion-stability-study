@@ -1,0 +1,392 @@
+\documentclass[acmsmall,screen,review]{acmart}
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\renewcommand\footnotetextcopyrightpermission[1]{}
+\AtBeginDocument{%
+  \providecommand\BibTeX{{Bib\TeX}}}
+
+\setcopyright{none}
+\settopmatter{printacmref=false}
+\authorsaddresses{}
+
+% Remove journal/volume/publication-date footer (paper is not yet published)
+\makeatletter
+\AtBeginDocument{%
+  \fancyfoot{}%
+  \fancypagestyle{firstpagestyle}{\fancyhf{}\fancyhead[L]{\ACM@linecountL}\renewcommand{\headrulewidth}{0pt}}%
+}
+\makeatother
+
+\title{Prompt Sensitivity and Its Effect on the Stability of LLM-Generated Research Conclusions}
+
+\author{Akula Advaith}
+
+\begin{abstract}
+Large language models (LLMs) are increasingly being used for literature synthesis, evidence extraction, hypothesis generation, qualitative coding and drafting research conclusions. The reliability of these applications depends not only on the capabilities of the model itself but also on how prompts are formulated. Prompt sensitivity refers to changes in model behaviour resulting from variations in prompt wording, structure, examples, ordering or formatting, while the intended task remains the same. Although prior research recognises prompt sensitivity as an important property of modern LLMs, its implications for the stability of research conclusions have received comparatively less attention. This review brings together existing research on prompt sensitivity, prompting strategies, reasoning, factuality, reproducibility and uncertainty, with a particular focus on how prompt variations can affect evidence selection, reasoning paths, factual claims and final conclusions. Existing approaches, including calibration, prompt ensembling, self-consistency, structured prompting, retrieval-based methods and sensitivity metrics, are examined in terms of their ability to improve output consistency. The review identifies several research gaps relating to conclusion-level robustness, prompt uncertainty, semantic equivalence, evaluation artefacts and reproducible reporting. It argues that prompt formulation should be treated as an important component of the measurement process when LLMs are used for research tasks.
+\end{abstract}
+
+\keywords{LLMs, prompt sensitivity, prompt robustness, research conclusions, reproducibility, prompt engineering, factuality, uncertainty, literature review}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\label{sec:introduction}
+
+Large language models (LLMs) are increasingly being used in research activities such as literature synthesis, evidence extraction, hypothesis generation, qualitative coding and drafting of research conclusions. Prompting has become an integral part of this process, with different prompting strategies leading to changes in reasoning and generation behaviour~\cite{schulhoff2024,wei2022,kojima2022}.
+
+The reliability of an LLM-based research workflow depends on the model itself as much as on how the task is actually phrased. A small change to the prompt can lead to different outputs even when the task remains the same. The order of demonstrations in a few-shot scenario can affect performance~\cite{lu2022}, while calibration techniques have also been proposed to reduce variation in few-shot settings~\cite{zhao2021}.
+
+Recent work has explicitly examined prompt sensitivity and consistency in large language models. ProSA offers a way to assess prompt sensitivity, while other studies investigate sensitivity and consistency in the context of prompt engineering~\cite{zhuo2024,errica2025}. Researchers have also considered whether some observed prompt-sensitivity effects may be influenced by evaluation design and related artifacts~\cite{hua2025}.
+
+This issue becomes particularly relevant when large language models are used to support research conclusions. A change in an ordinary generated response may have limited impact. However, a change in a research conclusion can affect how evidence is interpreted, as well as theoretical claims and practical recommendations. Since large language models have also been explored for tasks such as systematic literature review screening~\cite{han2025,strachan2024}, output stability is an important consideration in research workflows.
+
+This review focuses on the relationship between prompt sensitivity and the stability of research conclusions. It aims to address the following research questions:
+
+\begin{enumerate}
+\item What types of prompt sensitivity have been identified in existing research?
+\item Through which mechanisms can changes in prompts affect research conclusions?
+\item What strategies have been proposed to improve the consistency and robustness of LLM-generated outputs?
+\item What limitations remain in evaluating the stability of research conclusions?
+\item What future research directions could improve the reliability and reproducibility of LLM-assisted research?
+\end{enumerate}
+
+The remainder of the paper is organized as follows. Section~\ref{sec:framework} defines the review scope and synthesis framework. Section~\ref{sec:background} provides relevant background information and related research. Section~\ref{sec:stability} discusses prompt sensitivity and the stability of research conclusions. Section~\ref{sec:mechanisms} examines how prompt changes can affect conclusions. Section~\ref{sec:approaches} reviews current approaches. Section~\ref{sec:challenges} discusses the challenges and limitations. Section~\ref{sec:gaps} presents research gaps and future directions. Finally, Section~\ref{sec:conclusion} presents the conclusion.
+
+\section{Review Scope and Synthesis Framework}
+\label{sec:framework}
+
+This review examines existing literature on prompt sensitivity, prompting techniques, reasoning, factuality, reproducibility, and LLM-based research workflows. The literature is organized around the relationship between prompt variation and the stability of generated outputs.
+
+The synthesis follows four main levels:
+
+\begin{enumerate}
+\item prompt formulation and variation;
+\item model generation and reasoning;
+\item evidence and claim formation;
+\item final research conclusions.
+\end{enumerate}
+
+The review considers both direct studies of prompt sensitivity~\cite{zhuo2024,errica2025,liu_chu2026,qin2026} and related studies on prompting, reasoning, factuality, and reproducibility~\cite{schulhoff2024,wei2022,wang2023,lin2022,magnusson2023}.
+
+Figure~\ref{fig:prompt-refinement} illustrates an iterative prompt-refinement workflow in which multiple prompt candidates are generated, evaluated, compared, and refined.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.3\columnwidth]{figures/prompt_refinement.jpeg}
+\caption{Iterative prompt-refinement workflow showing the generation, evaluation, comparison, and refinement of prompt candidates.}
+\Description{A flowchart beginning with an initial prompt and training set, followed by generation of multiple prompt candidates, generation of outputs for each candidate, evaluation and scoring, a decision about whether enough contrasts exist, contrast of good and bad prompts, generation of a refined prompt, and a stop-criteria decision leading either to a final optimized prompt or another iteration.}
+\label{fig:prompt-refinement}
+\end{figure}
+
+\section{Background and Related Work}
+\label{sec:background}
+
+\subsection{LLMs as Conditional Generative Systems}
+
+An LLM can also be viewed as a conditional generative model, where the probability of generating an output sequence depends on the input prompt and the previously generated tokens:
+
+\begin{equation}
+P(y\mid x)=\prod_{t=1}^{T}P(y_t\mid x,y_{<t})
+\label{eq:autoregressive}
+\end{equation}
+
+In this setting, changing the input prompt $x$ can alter the conditional probability distribution over possible outputs. Therefore, two different prompts that convey the same task may still produce different outputs.
+
+\subsection{Prompt Sensitivity}
+
+Prompt sensitivity refers to changes in model behaviour caused by variations in the way prompts are formulated, including their structure, wording, ordering and demonstrations~\cite{lu2022,zhuo2024,errica2025}.
+
+A general sensitivity measure can be represented as:
+
+\begin{equation}
+S(x)=\mathbb{E}_{x'\sim P(x)}[d(f(x),f(x'))]
+\label{eq:sensitivity}
+\end{equation}
+
+where $f(x)$ represents the model output for prompt $x$, $x'$ represents a perturbed or alternative prompt, and $d$ measures the difference between the outputs.
+
+Recent papers have introduced techniques for explicitly measuring and analysing prompt sensitivity~\cite{zhuo2024,qin2026}. Some studies approach prompt sensitivity from a broader measurement perspective, including prompt uncertainty and the effects of prompt variation on empirical inference~\cite{leng2026,liu_chu2026}.
+
+\subsection{Prompting and Reasoning}
+
+Prompting strategies can have a considerable influence on the reasoning behaviour of large language models. Chain-of-thought prompting has been found to improve reasoning performance on suitable tasks~\cite{wei2022}, whereas zero-shot reasoning provides another method for eliciting multi-step reasoning without demonstrations~\cite{kojima2022}.
+
+Self-consistency extends reasoning by sampling multiple reasoning paths and selecting a consistent answer:
+
+\begin{equation}
+\hat{y}=\operatorname{mode}\{f(x,r_1),f(x,r_2),\ldots,f(x,r_k)\}
+\label{eq:self-consistency}
+\end{equation}
+
+where $r_i$ represents a reasoning path.
+
+Self-consistency has been proposed as a way to improve reasoning reliability~\cite{wang2023}. Nonetheless, consistency among multiple generated responses does not necessarily imply that the resulting conclusion is factually correct.
+
+\section{Prompt Sensitivity and Research-Conclusion Stability}
+\label{sec:stability}
+
+\subsection{Research Conclusions as a Special Case}
+
+A research workflow can be represented as:
+
+\begin{equation}
+D \rightarrow P \rightarrow M \rightarrow O \rightarrow C
+\label{eq:pipeline}
+\end{equation}
+
+where $D$ is the available evidence or dataset, $P$ is the prompt, $M$ is the model, $O$ is the generated output, and $C$ is the final research conclusion.
+
+Ideally, semantically equivalent prompts should produce equivalent research conclusions:
+
+\begin{equation}
+f(x_1,D)\approx f(x_2,D)
+\label{eq:ideal}
+\end{equation}
+
+where $x_1$ and $x_2$ are semantically equivalent prompts.
+
+Nevertheless, prompt sensitivity may lead to differences at several stages of the workflow. These differences may arise in evidence selection, interpretation, reasoning, factual claims, or the final conclusion.
+
+\subsection{Sources of Prompt Variation}
+
+Table~\ref{tab:prompt-taxonomy} summarizes important sources of prompt variation.
+
+\begin{table}[t]
+\caption{Taxonomy of prompt variation relevant to research tasks.}
+\label{tab:prompt-taxonomy}
+\centering
+\begin{tabular}{p{0.23\linewidth}p{0.67\linewidth}}
+\toprule
+Variation Type & Description \\
+\midrule
+Lexical & Changes in wording, synonyms, or phrasing. \\
+Structural & Changes in ordering, formatting, or organization. \\
+Demonstration & Changes in few-shot examples and their ordering. \\
+Instruction & Changes in task framing or explicit instructions. \\
+Output Constraints & Changes in requested format, length, or structure. \\
+Decoding & Variation caused by stochastic generation settings. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Few-shot example ordering has been directly studied as a source of performance variation~\cite{lu2022}. Prompt engineering studies also identify a variety of prompting techniques and design choices that may affect model behavior~\cite{schulhoff2024}.
+
+\section{Mechanisms Through Which Prompt Sensitivity Can Affect Conclusions}
+\label{sec:mechanisms}
+
+\subsection{Evidence Selection}
+
+Changes to the prompt can affect which information the model highlights or extracts. This is particularly relevant to literature review workflows, where LLMs can be used for article screening or evidence extraction~\cite{han2025,strachan2024}.
+
+The resulting workflow can therefore be represented as:
+
+\begin{equation}
+C=f(P,D,M)
+\label{eq:conclusion}
+\end{equation}
+
+where the conclusion depends on the prompt, evidence, and model.
+
+\subsection{Reasoning Path Variation}
+
+Different prompts may lead to different reasoning paths. Chain-of-thought prompting and self-consistency demonstrate that prompting can influence reasoning behaviour~\cite{wei2022,wang2023}.
+
+Multiple reasoning paths can be represented as:
+
+\begin{equation}
+O_i=f(P,D,M,r_i)
+\label{eq:reasoning-path}
+\end{equation}
+
+where $r_i$ represents a particular reasoning path.
+
+While self-consistency may help achieve agreement among generated responses~\cite{wang2023}, agreement does not necessarily imply correctness.
+
+\subsection{Factuality and Confidence}
+
+Variations in prompts can also affect factual claims and confidence. TruthfulQA highlights the importance of evaluating whether language models produce truthful information rather than merely plausible responses~\cite{lin2022}. Similarly, factuality-enhanced generation techniques have explored ways to improve factual reliability~\cite{lee2022}.
+
+Thus, output stability and factual correctness should be considered related but distinct properties.
+
+\subsection{Pipeline Propagation}
+
+In an LLM-assisted research workflow, an early prompt-dependent variation can propagate to later stages:
+
+\begin{equation}
+P_1\rightarrow O_1\rightarrow E_1\rightarrow C_1
+\label{eq:propagation}
+\end{equation}
+
+where $E_1$ represents an intermediate evidence or interpretation stage.
+
+A different prompt might produce:
+
+\begin{equation}
+P_2\rightarrow O_2\rightarrow E_2\rightarrow C_2
+\label{eq:alternative-pipeline}
+\end{equation}
+
+This means that prompt sensitivity at an early stage may eventually influence the final research conclusion.
+
+\section{Current Approaches and Comparative Analysis}
+\label{sec:approaches}
+
+Several strategies have been proposed to reduce or understand variations in LLM outputs.
+
+\subsection{Calibration}
+
+Calibration methods attempt to improve the reliability of predictions in few-shot settings. Zhao et al. investigate calibration before using few-shot demonstrations~\cite{zhao2021}.
+
+\subsection{Prompt Ensembling}
+
+Prompt ensembling considers multiple prompt variations instead of relying on a single prompt. This approach is related to research on prompt sensitivity and consistency~\cite{errica2025,zhuo2024}.
+
+\subsection{Self-Consistency}
+
+Self-consistency considers multiple reasoning paths and selects the most consistent answer~\cite{wang2023}. This strategy can reduce variation in reasoning outcomes, but it does not necessarily guarantee factual correctness.
+
+\subsection{Structured Prompting}
+
+Structured prompting explicitly defines instructions and output formats. The Prompt Report provides an extensive survey of prompting techniques~\cite{schulhoff2024}.
+
+\subsection{Evidence-Grounded Generation}
+
+Retrieval and evidence-based methods aim to connect generated outputs with available evidence. Research on factuality emphasizes the importance of minimizing unsupported claims~\cite{lee2022,lin2022}.
+
+\subsection{Sensitivity Metrics}
+
+Recent studies have explicitly focused on measuring prompt sensitivity. ProSA provides a method for assessing prompt sensitivity~\cite{zhuo2024}, while further studies investigate sensitivity, consistency, and interaction effects~\cite{errica2025,qin2026}.
+
+Table~\ref{tab:approach-comparison} compares these approaches.
+
+\begin{table*}[t]
+\caption{Comparison of approaches for improving or evaluating LLM output stability.}
+\label{tab:approach-comparison}
+\centering
+\begin{tabular}{p{0.16\linewidth}p{0.25\linewidth}p{0.25\linewidth}p{0.20\linewidth}}
+\toprule
+Approach & Main Idea & Benefit & Limitation \\
+\midrule
+Calibration & Adjust model outputs before few-shot use & Can reduce systematic variation & Depends on calibration procedure \\
+Prompt Ensembling & Evaluate multiple prompt variants & Reduces dependence on one prompt & Increases computational cost \\
+Self-Consistency & Sample multiple reasoning paths & Improves reasoning consistency & Agreement does not guarantee truth \\
+Structured Prompting & Constrain instructions and output format & Improves reproducibility of task format & Sensitive to structure design \\
+Evidence-Grounded Generation & Connect outputs to external evidence & Can improve factual grounding & Depends on evidence quality \\
+Sensitivity Metrics & Measure variation across prompts & Makes prompt sensitivity measurable & Metrics may not capture conclusion-level effects \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The approaches shown in Table~\ref{tab:approach-comparison} address different aspects of the problem. Some aim to improve output consistency, while others focus on measuring variations. Thus, these approaches tackle different aspects of prompt sensitivity rather than pursuing one unified goal.
+
+\section{Research Challenges and Limitations}
+\label{sec:challenges}
+
+\subsection{Semantic Equivalence}
+
+The difficulty lies in determining whether two prompts are genuinely semantically equivalent. Surface-level similarity does not necessarily mean that two prompts have the same meaning.
+
+\subsection{Output Variation Versus Conclusion Variation}
+
+Not all differences in generated outputs affect the underlying conclusion. A proper evaluation method should distinguish between variations in wording and substantive changes in claims or conclusions.
+
+\subsection{Model and Version Dependence}
+
+Prompt sensitivity may depend on the model used, its version, decoding configuration, and the task itself. Therefore, findings obtained from one model cannot automatically be generalized to all LLMs.
+
+\subsection{Evaluation Artifacts}
+
+Measures of prompt sensitivity may themselves be influenced by the design of the evaluation. Recent studies have examined whether observed sensitivity is a genuine property of the model or an artifact of the evaluation process~\cite{hua2025}.
+
+\subsection{Reproducibility}
+
+Reproducibility requires proper documentation of prompts, model versions, decoding settings, datasets, and evaluation procedures. Reproducibility studies in NLP emphasize the importance of systematic reporting and documentation~\cite{magnusson2023}.
+
+Table~\ref{tab:stability} provides an overview of the different levels at which stability can be evaluated.
+
+\begin{table}[t]
+\caption{Levels of stability in an LLM-assisted research workflow.}
+\label{tab:stability}
+\centering
+\begin{tabular}{p{0.25\linewidth}p{0.62\linewidth}}
+\toprule
+Level & Stability Question \\
+\midrule
+Lexical & Does the generated wording remain similar? \\
+Semantic & Does the meaning remain similar? \\
+Claim & Do individual factual or analytical claims remain stable? \\
+Conclusion & Does the final research conclusion remain stable? \\
+Recommendation & Does the resulting recommendation remain stable? \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Conclusion-level stability is particularly important because a minor textual difference may be harmless, whereas a change in the final conclusion may have significant consequences.
+
+\section{Research Gaps and Future Directions}
+\label{sec:gaps}
+
+\subsection{Conclusion-Level Robustness}
+
+Most studies examining prompt sensitivity focus on measuring task performance and output consistency. However, further research is needed to determine whether changes in prompts affect the final research conclusions~\cite{zhuo2024,errica2025}.
+
+\subsection{Prompt Families as Experimental Units}
+
+Instead of evaluating only one prompt, researchers can evaluate a family of semantically equivalent prompts:
+
+\begin{equation}
+P=\{p_1,p_2,\ldots,p_n\}
+\label{eq:prompt-family}
+\end{equation}
+
+The conclusions generated from these prompts can then be compared with one another.
+
+\subsection{Prompt Uncertainty}
+
+The choice of prompts can be considered a source of measurement uncertainty. A conceptual formulation is proposed as follows:
+
+\begin{equation}
+U_P=\operatorname{Var}_{P}[C(P,D,M)]
+\label{eq:prompt-uncertainty}
+\end{equation}
+
+This perspective is related to recent research on prompt uncertainty and LLM-based measurement~\cite{leng2026}.
+
+\subsection{Naturalistic and Adversarial Perturbations}
+
+Future research should consider both natural variations in human-written prompts and systematic perturbations. Recent studies on prompt sensitivity provide a foundation for analysing such variations~\cite{liu_chu2026,qin2026}.
+
+\subsection{Human--LLM Collaborative Validation}
+
+Human researchers can be involved in verifying whether changes in model outputs caused by prompt variations represent meaningful differences in evidence interpretation or merely differences in wording.
+
+\subsection{Standardized Reporting}
+
+Future research should report prompts, prompt variants, model versions, decoding settings, datasets, evaluation metrics, and changes in conclusions. Such reporting can improve reproducibility and enable comparisons across studies~\cite{magnusson2023}.
+
+A general robustness measure can be represented as:
+
+\begin{equation}
+R_C=1-\frac{1}{N}\sum_{i=1}^{N}d(C_0,C_i)
+\label{eq:robustness}
+\end{equation}
+
+where $C_0$ is the reference conclusion, $C_i$ is the conclusion produced by a prompt variant, and $d$ measures substantive difference.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+Prompt sensitivity is an important factor to consider when LLMs are used for research. Previous studies have shown that prompt wording, ordering, demonstrations, reasoning strategies, and evaluation methods can influence model behaviour~\cite{lu2022,zhuo2024,errica2025}.
+
+In research workflows, the problem extends beyond ordinary variations in outputs. Prompt sensitivity may also affect evidence selection, reasoning paths, factual claims, and ultimately research conclusions. Existing approaches, including calibration, self-consistency, structured prompting, evidence grounding, and sensitivity measurement, address different aspects of this problem~\cite{zhao2021,wang2023,schulhoff2024}.
+
+Nevertheless, several research gaps remain concerning conclusion-level robustness, semantic equivalence, prompt uncertainty, evaluation artifacts, and reproducible reporting. Treating prompt formulation as part of the measurement process provides a useful direction for future research.
+
+Future work should therefore examine families of semantically equivalent prompts, quantify conclusion-level variation, distinguish consistency from correctness, and develop standardized reporting procedures for LLM-assisted research.
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{references}
+
+\end{document}
