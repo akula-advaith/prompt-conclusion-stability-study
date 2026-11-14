@@ -10,7 +10,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 ROOT = Path(__file__).resolve().parents[1]
-SOURCE = ROOT / "results" / "analysis" / "relation_similarity_summary.csv"
+SOURCE = ROOT / "results" / "analysis" / "relation_similarity_summary_v1_4.csv"
 OUTPUT = ROOT / "papers" / "second_paper" / "figures" / "tfidf_by_conclusion_relation.png"
 
 ORDER = ["stable", "emphasis_shift", "substantive_shift"]

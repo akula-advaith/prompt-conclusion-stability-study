@@ -10,7 +10,7 @@ on:
       - "papers/second_paper/second_paper_references.bib"
       - "papers/second_paper/figures/quality_by_prompt_model.png"
       - "papers/second_paper/figures/pairwise_relation_counts.png"
-      - "results/analysis/relation_similarity_summary.csv"
+      - "results/analysis/relation_similarity_summary_v1_4.csv"
   workflow_dispatch:
 
 permissions:

@@ -11,7 +11,7 @@
 
 ## Rebuild
 
-The repository workflow `.github/workflows/build-second-paper.yml` compiles the PDF when the manuscript, bibliography, required figures, or source analysis CSV changes. It also rebuilds `tfidf_by_conclusion_relation.png` from `results/analysis/relation_similarity_summary.csv`.
+The repository workflow `.github/workflows/build-second-paper.yml` compiles the PDF when the manuscript, bibliography, required figures, or source analysis summary changes. It also rebuilds `tfidf_by_conclusion_relation.png` from `results/analysis/relation_similarity_summary_v1_4.csv`.
 
 To build locally from the repository root:
 
