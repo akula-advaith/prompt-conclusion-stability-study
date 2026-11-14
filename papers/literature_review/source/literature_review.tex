@@ -1,4 +1,6 @@
 \documentclass[acmsmall,screen,review]{acmart}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,shapes.geometric,positioning}
 \setcopyright{none}
 \settopmatter{printacmref=false}
 \renewcommand\footnotetextcopyrightpermission[1]{}
@@ -74,7 +76,37 @@ Figure~\ref{fig:prompt-refinement} illustrates an iterative prompt-refinement wo
 
 \begin{figure}[t]
 \centering
-\includegraphics[width=0.3\columnwidth]{figures/prompt_refinement.jpeg}
+\begin{tikzpicture}[
+  node distance=5mm,
+  every node/.style={font=\scriptsize,align=center},
+  process/.style={rectangle,draw,rounded corners=1pt,fill=blue!5,
+                  minimum width=34mm,minimum height=6mm,inner sep=2pt},
+  decision/.style={diamond,draw,fill=blue!5,aspect=2.5,
+                   minimum width=20mm,minimum height=8mm,inner sep=1pt},
+  flow/.style={-{Latex[length=1.5mm]},line width=0.45pt}
+]
+\node[process] (start) {Start: Initial Prompt +\\Training Set};
+\node[process,below=of start] (candidates) {Generate Multiple Prompt\\Candidates};
+\node[process,below=of candidates] (outputs) {LLM Generates Outputs\\for Each Candidate};
+\node[process,below=of outputs] (evaluate) {Evaluate \& Score Outputs};
+\node[decision,below=7mm of evaluate] (contrasts) {Enough Contrasts?};
+\node[process,below=8mm of contrasts] (compare) {Contrast Good vs Bad\\Prompts};
+\node[process,below=of compare] (refine) {Generate Refined Prompt};
+\node[decision,below=8mm of refine] (stop) {Stop Criteria?};
+\node[process,below=8mm of stop] (final) {Final Optimized Prompt};
+\node[process,below=of final] (end) {End};
+\draw[flow] (start) -- (candidates);
+\draw[flow] (candidates) -- (outputs);
+\draw[flow] (outputs) -- (evaluate);
+\draw[flow] (evaluate) -- (contrasts);
+\draw[flow] (contrasts) -- node[right]{Yes} (compare);
+\draw[flow] (contrasts.east) -- node[above]{No} ++(12mm,0) |- (outputs.east);
+\draw[flow] (compare) -- (refine);
+\draw[flow] (refine) -- (stop);
+\draw[flow] (stop) -- node[right]{Yes} (final);
+\draw[flow] (stop.east) -- node[above]{No} ++(16mm,0) |- (candidates.east);
+\draw[flow] (final) -- (end);
+\end{tikzpicture}
 \caption{Iterative prompt-refinement workflow showing the generation, evaluation, comparison, and refinement of prompt candidates.}
 \Description{A flowchart beginning with an initial prompt and training set, followed by generation of multiple prompt candidates, generation of outputs for each candidate, evaluation and scoring, a decision about whether enough contrasts exist, contrast of good and bad prompts, generation of a refined prompt, and a stop-criteria decision leading either to a final optimized prompt or another iteration.}
 \label{fig:prompt-refinement}

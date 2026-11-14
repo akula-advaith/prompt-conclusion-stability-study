@@ -1,0 +1,42 @@
+name: Build first literature-review paper PDF
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-literature-review.yml"
+      - "papers/literature_review/source/literature_review.tex"
+      - "papers/literature_review/source/references.bib"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Install LaTeX dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y latexmk texlive-latex-extra texlive-publishers texlive-bibtex-extra texlive-fonts-recommended
+      - name: Compile first paper
+        working-directory: papers/literature_review/source
+        run: |
+          latexmk -pdf -interaction=nonstopmode -halt-on-error -file-line-error literature_review.tex
+          test -s literature_review.pdf
+          pdfinfo literature_review.pdf | grep -E "Pages:|Page size:"
+      - name: Publish generated PDF in paper folder
+        run: |
+          cp papers/literature_review/source/literature_review.pdf papers/literature_review/literature_review.pdf
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add papers/literature_review/literature_review.pdf
+          if git diff --cached --quiet; then
+            echo "Literature-review PDF is already up to date."
+          else
+            git commit -m "Build compiled literature-review PDF"
+            git push
+          fi

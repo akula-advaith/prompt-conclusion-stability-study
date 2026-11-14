@@ -24,3 +24,13 @@ venv/
 Thumbs.db
 .vscode/
 .idea/
+
+# LaTeX build products
+papers/**/source/*.aux
+papers/**/source/*.bbl
+papers/**/source/*.blg
+papers/**/source/*.fdb_latexmk
+papers/**/source/*.fls
+papers/**/source/*.log
+papers/**/source/*.out
+papers/**/source/*.synctex.gz
