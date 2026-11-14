@@ -1,0 +1,91 @@
+{
+  "protocol_version": "v1.4",
+  "status": "frozen_protocol_used_for_completed_main_run",
+  "study_type": "controlled_comparative_inference_study",
+  "main_run": {
+    "run_window_utc_start": "2026-11-10T12:42:30Z",
+    "run_window_utc_end": "2026-11-10T12:44:42Z",
+    "outputs_expected": 48,
+    "outputs_recorded": 48,
+    "generations_per_source_prompt_model": 1
+  },
+  "dataset": {
+    "file": "data/study_sources_v1_1_verified.json",
+    "version": "v1.1",
+    "source_count": 8,
+    "source_ids": [
+      "S01",
+      "S02",
+      "S03",
+      "S04",
+      "S05",
+      "S06",
+      "S07",
+      "S08"
+    ],
+    "sha256": "8c2bc1018ee04dc216c55c389ba296c1ad8138566063b1add827ed06d8393295",
+    "evidence": "publisher-linked scientific abstracts; purposive sample; abstract-only"
+  },
+  "models": [
+    {
+      "id": "Qwen/Qwen2.5-0.5B-Instruct",
+      "revision_sha": "7ae557604adf67be50417f59c2c2f167def9a775",
+      "role": "baseline_size_condition"
+    },
+    {
+      "id": "Qwen/Qwen2.5-1.5B-Instruct",
+      "revision_sha": "989aa7980e4cf806f80c7fef2b1adb7bc71aa306",
+      "role": "within-family_model_size_comparator"
+    }
+  ],
+  "prompt_conditions": {
+    "P0_reference": "State the central conclusion of the scientific abstract below in exactly one sentence.",
+    "P1_paraphrase": "In one sentence, report the main conclusion of the scientific abstract below.",
+    "P2_paraphrase": "Write a single-sentence account of the principal conclusion drawn in the scientific abstract below."
+  },
+  "shared_constraints": [
+    "Use only information explicitly supported by the abstract.",
+    "Do not add external knowledge, invent quantities, or extend the source's scope.",
+    "Preserve important qualifications.",
+    "Return exactly one sentence and no additional commentary."
+  ],
+  "generation": {
+    "do_sample": false,
+    "seed": 42,
+    "max_new_tokens": 100,
+    "output_target": "one central-conclusion sentence",
+    "model_training_or_fine_tuning": false
+  },
+  "environment": {
+    "runtime": "Google Colab",
+    "gpu": "Tesla T4",
+    "python": "3.13.16",
+    "pytorch": "2.14.1+cu130",
+    "transformers": "5.22.1"
+  },
+  "evaluation": {
+    "output_quality_dimensions": [
+      "central_conclusion_fidelity",
+      "evidential_support",
+      "scope_qualification_fidelity"
+    ],
+    "dimension_scores": [
+      0,
+      0.5,
+      1
+    ],
+    "pairwise_relation_labels": [
+      "stable",
+      "emphasis_shift",
+      "substantive_shift",
+      "contradiction"
+    ],
+    "additional_comparator": "TF-IDF cosine similarity on lowercase word unigrams and bigrams",
+    "adapted_pss_note": "study-specific mean pairwise absolute difference in output-quality scores; not an official ProSA/PSS reproduction"
+  },
+  "known_handling": {
+    "one_sentence_heuristic_failures": 3,
+    "handling": "Retained unmodified; see raw run JSON and analysis report.",
+    "annotations": "AI-assisted first-pass assessments; not independent human ground truth."
+  }
+}

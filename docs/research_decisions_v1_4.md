@@ -32,9 +32,9 @@
 - **Decision:** Exclude all development-only source outputs, including the ProSA abstract and STEM intervention abstract, from main results.
 - **Rationale:** They were used to debug environment, prompting and output-format behavior; the sample is not the prespecified eight-source main dataset.
 
-## Current next action
+## Historical next action at the v1.3 checkpoint (superseded on 10 November 2026)
 
-Run `Phase_III_Modular_Baseline_Validation_v1_3.ipynb` from a clean Colab GPU runtime, upload `study_sources_v1_1_verified.json` when prompted, run all cells, and share `phase3_baseline_validation_v1_3.json`. Review that output before freezing Phase II or starting the 48-output main experiment.
+This was the next action at the 29 October 2026 checkpoint. It was subsequently completed; the retained run output is results/baseline/phase3_baseline_validation_v1_3.json. It is kept here as historical decision-log context, not as the current next action.
 
 ## D13 — Operational baseline status after v1.3 JSON
 
@@ -52,3 +52,18 @@ Run `Phase_III_Modular_Baseline_Validation_v1_3.ipynb` from a clean Colab GPU ru
 
 - **Evidence:** Unit test for identical strings returned `1.0000000000000007`, which is numerically 1 within floating-point tolerance.
 - **Decision:** Clamp values exported in final result tables to [0,1] and use tolerance-based assertions. This is numerical hygiene and does not change the interpretation of cosine similarity.
+
+## D16 — Main experiment executed under frozen v1.4 protocol
+
+- **Date:** 10 November 2026.
+- **Evidence:** results/raw/main_experiment_raw_outputs_v1_4.json and its CSV export; 48 records covering 8 sources × 3 prompt conditions × 2 pinned Qwen2.5 model sizes.
+- **Protocol:** Greedy decoding, max_new_tokens=100, seed 42 recorded, one generation per source/prompt/model, exact dataset hash and model revisions recorded.
+- **Decision:** Keep the raw JSON unmodified and separate all development/pilot outputs from the main run.
+- **Status:** Main data collection completed. Integrity checks pass; scientific output assessments remain subject to human review.
+
+## D17 — Treat output assessment as an AI-assisted first pass
+
+- **Evidence:** results/analysis/annotations_ai_assisted.csv (48 output assessments) and results/analysis/pairwise_conclusion_relations.csv (48 pair comparisons).
+- **Decision:** Report these as AI-assisted source-grounded assessments, not independent human ground truth.
+- **Required human action:** Review all 48 output annotations and 48 pair labels against the original abstracts. Keep human corrections in separately versioned files and do not edit raw outputs.
+- **Status:** Human review remains open as of 14 November 2026.

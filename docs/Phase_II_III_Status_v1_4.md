@@ -1,4 +1,4 @@
-# Phase II & III status — v1.4
+# Phase II & III status — v1.4 (Historical pre-main-run checkpoint, 29 October 2026)
 
 ## Bottom line
 
@@ -31,3 +31,7 @@ The latest v1.3 JSON confirms that the main software checks passed. The experime
 - Final public repository and five-minute demonstration.
 
 Do not describe these later-stage items as complete.
+
+## Historical status clarification — 14 November 2026
+
+This document records the Phase II/III checkpoint before the main v1.4 data collection. Its statements that the 48-output main experiment had not yet run were accurate at that checkpoint and are not current status statements. The main run was executed on 10 November 2026. See docs/project_status.md, docs/main_run_completion_note.md, and results/raw/main_experiment_raw_outputs_v1_4.json for the current post-run state.

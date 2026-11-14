@@ -39,3 +39,9 @@ The detailed Phase II/III development record is preserved in `docs/phase_ii_iii_
 ## Integrity boundary
 
 No model training or fine-tuning was conducted. The study is a controlled comparison of prompt conditions and two model sizes within one model family. Only one greedy generation was collected per source × prompt × model condition. The annotations are AI-assisted and must be human-reviewed before final claims. No statistical-significance claim is supported by the current descriptive analysis.
+
+## Authentic development-log linkage
+
+The earlier, contemporaneous Phase II/III log is retained at docs/ai_assistance_log_v1_3.md. It records actual observed environment outputs, failed multi-field and JSON output attempts, a network timeout, the unpinned comparator revision issue, a pinned comparator test, and the source-qualification omission. The accompanying raw development JSON files are stored in results/baseline/.
+
+The v1.3 log predates the 10 November main run; it is a historical development record. This v1.4 log records later main-run and analysis assistance separately. Neither log substitutes for a complete prompt-by-prompt source-control diff ledger. Any further provenance entries must be based on authentic prompts, outputs and commits, not reconstructed or invented.
