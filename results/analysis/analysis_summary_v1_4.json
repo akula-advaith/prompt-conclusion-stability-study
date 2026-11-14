@@ -1,0 +1,151 @@
+{
+  "protocol_version": "1.4",
+  "assessment_type": "AI-assisted source-grounded annotation; not independent human ground truth",
+  "run_integrity": {
+    "raw_records": 48,
+    "expected_records": 48,
+    "unique_combinations": 48,
+    "duplicate_combinations": 0,
+    "empty_outputs": 0,
+    "truncated_outputs": 0,
+    "one_sentence_pass": 45,
+    "one_sentence_fail": 3
+  },
+  "overall_quality": 0.6875,
+  "dimension_means": {
+    "central_conclusion_fidelity": 0.8438,
+    "evidential_support": 0.7188,
+    "scope_qualification_fidelity": 0.5
+  },
+  "model_summary": [
+    {
+      "model_size": "0.5B",
+      "mean_quality": 0.618,
+      "median_quality": 0.667,
+      "high_quality_fraction": 0.333,
+      "output_count": 24,
+      "one_sentence_compliance": 0.958
+    },
+    {
+      "model_size": "1.5B",
+      "mean_quality": 0.757,
+      "median_quality": 0.833,
+      "high_quality_fraction": 0.625,
+      "output_count": 24,
+      "one_sentence_compliance": 0.917
+    }
+  ],
+  "prompt_summary": [
+    {
+      "model_size": "0.5B",
+      "prompt_id": "P0_reference",
+      "n": 8,
+      "mean_total_quality": 0.458,
+      "mean_conclusion_fidelity": 0.562,
+      "mean_evidential_support": 0.375,
+      "mean_scope_fidelity": 0.438,
+      "one_sentence_pass_rate": 0.875
+    },
+    {
+      "model_size": "0.5B",
+      "prompt_id": "P1_paraphrase",
+      "n": 8,
+      "mean_total_quality": 0.687,
+      "mean_conclusion_fidelity": 0.812,
+      "mean_evidential_support": 0.75,
+      "mean_scope_fidelity": 0.5,
+      "one_sentence_pass_rate": 1.0
+    },
+    {
+      "model_size": "0.5B",
+      "prompt_id": "P2_paraphrase",
+      "n": 8,
+      "mean_total_quality": 0.708,
+      "mean_conclusion_fidelity": 0.875,
+      "mean_evidential_support": 0.75,
+      "mean_scope_fidelity": 0.5,
+      "one_sentence_pass_rate": 1.0
+    },
+    {
+      "model_size": "1.5B",
+      "prompt_id": "P0_reference",
+      "n": 8,
+      "mean_total_quality": 0.729,
+      "mean_conclusion_fidelity": 0.875,
+      "mean_evidential_support": 0.75,
+      "mean_scope_fidelity": 0.562,
+      "one_sentence_pass_rate": 0.875
+    },
+    {
+      "model_size": "1.5B",
+      "prompt_id": "P1_paraphrase",
+      "n": 8,
+      "mean_total_quality": 0.792,
+      "mean_conclusion_fidelity": 1.0,
+      "mean_evidential_support": 0.875,
+      "mean_scope_fidelity": 0.5,
+      "one_sentence_pass_rate": 1.0
+    },
+    {
+      "model_size": "1.5B",
+      "prompt_id": "P2_paraphrase",
+      "n": 8,
+      "mean_total_quality": 0.75,
+      "mean_conclusion_fidelity": 0.938,
+      "mean_evidential_support": 0.812,
+      "mean_scope_fidelity": 0.5,
+      "one_sentence_pass_rate": 0.875
+    }
+  ],
+  "pairwise_relation_counts": {
+    "stable": 25,
+    "emphasis_shift": 15,
+    "substantive_shift": 8
+  },
+  "pairwise_relation_by_model": {
+    "0.5B": {
+      "stable": 10,
+      "emphasis_shift": 6,
+      "substantive_shift": 8,
+      "contradiction": 0
+    },
+    "1.5B": {
+      "stable": 15,
+      "emphasis_shift": 9,
+      "substantive_shift": 0,
+      "contradiction": 0
+    }
+  },
+  "adapted_pss_mean_by_model": {
+    "0.5B": 0.2083,
+    "1.5B": 0.0972
+  },
+  "mean_tfidf_by_model": {
+    "0.5B": 0.454,
+    "1.5B": 0.44
+  },
+  "relation_similarity_summary": [
+    {
+      "relation": "emphasis_shift",
+      "pair_count": 15,
+      "mean_tfidf_cosine": 0.406,
+      "median_tfidf_cosine": 0.326,
+      "mean_quality_score_difference": 0.189
+    },
+    {
+      "relation": "stable",
+      "pair_count": 25,
+      "mean_tfidf_cosine": 0.503,
+      "median_tfidf_cosine": 0.418,
+      "mean_quality_score_difference": 0.04
+    },
+    {
+      "relation": "substantive_shift",
+      "pair_count": 8,
+      "mean_tfidf_cosine": 0.35,
+      "median_tfidf_cosine": 0.28,
+      "mean_quality_score_difference": 0.437
+    }
+  ],
+  "caveat": "All annotations are AI-assisted and require human review before being treated as final research evidence."
+}
